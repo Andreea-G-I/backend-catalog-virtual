@@ -1,0 +1,80 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Profesor {
+  id       Int        @id @default(autoincrement())
+  nume     String
+  domeniu  String
+  email    String     @unique
+  parola   String
+  Contract Contract[]
+}
+
+model Student {
+  id        Int         @id @default(autoincrement())
+  nume      String
+  domeniu   String
+  grupa     Int
+  email     String      @unique
+  parola    String
+  Inscriere Inscriere[]
+  Nota      Nota[]
+}
+
+model Disciplina {
+  id        Int         @id @default(autoincrement())
+  nume      String
+  domeniu   String
+  Contract  Contract[]
+  Testare   Testare[]
+  Inscriere Inscriere[]
+}
+
+model Contract {
+  id            Int        @id @default(autoincrement())
+  descriere     String
+  id_profesor   Int
+  id_disciplina Int
+  profesor      Profesor   @relation(fields: [id_profesor], references: [id])
+  disciplina    Disciplina @relation(fields: [id_disciplina], references: [id])
+}
+
+model Inscriere {
+  id            Int        @id @default(autoincrement())
+  descriere     String
+  id_student    Int
+  id_disciplina Int
+  student       Student    @relation(fields: [id_student], references: [id])
+  disciplina    Disciplina @relation(fields: [id_disciplina], references: [id])
+}
+
+model Testare {
+  id            Int        @id @default(autoincrement())
+  id_disciplina Int
+  descriere     String?
+  data          String
+  disciplina    Disciplina @relation(fields: [id_disciplina], references: [id])
+  Nota          Nota[]
+}
+
+model Nota {
+  id         Int     @id @default(autoincrement())
+  descriere  String?
+  id_student Int
+  id_testare Int
+  valoare    Int
+  student    Student @relation(fields: [id_student], references: [id])
+  testare    Testare @relation(fields: [id_testare], references: [id])
+}
+
+model Admin {
+  nume   String
+  email  String @id @unique
+  parola String
+}
