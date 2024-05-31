@@ -10,7 +10,7 @@ Aplicatia este un backend dezvoltat folosind Node.js si Express.js, cu baza de d
 	- Express.JS - framework-ul utilizat pentru a construi serverul web si pentru a defini rutele API
 	- Prisma - ORM folosit pentru interactiunea cu baza de date PostgreSQL
 	- JWT (Json Web Token) - utilizat pentru autentificare
-	- Middlewares - functii care proceseaza cereririle HTTP inainte de a ajunge la rutele finale, cum ar fi autentificarea si verificarea rolului utilizatorului
+	- Middlewares - functii care proceseaza cererile HTTP inainte de a ajunge la rutele finale, cum ar fi autentificarea si verificarea rolului utilizatorului
 	- Swagger - folosit pentru documentarea API-ului
 
 
