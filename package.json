@@ -5,14 +5,10 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "start": "node app.js"
   },
-  "jest": {
-    "testEnvironment": "node"
-  },
   "keywords": [],
-  "author": "Andreea",
+  "author": "Andreea Iordache",
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^5.14.0",
@@ -29,8 +25,5 @@
     "winston": "^3.13.0"
   },
   "devDependencies": {
-    "eslint": "^9.3.0",
-    "jest": "^29.7.0",
-    "supertest": "^7.0.0"
-  }
+    "eslint": "^9.3.0"
 }
