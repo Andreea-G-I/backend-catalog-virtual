@@ -46,15 +46,28 @@ Aplicatia este un backend dezvoltat folosind Node.js si Express.js, cu baza de d
 Configurarea Swagger ofera o interfata unde utilizatorii pot vedea si testa rute disponibile
 
 
-6. Pasii pentru rulare
+6. Pasii pentru rulare (local)
+
 Instalam toate dependintele, folosind comanda urmatoare intr-un terminal:
 $ npm install
 
-Ne conectam local, spre exemplu, cu Docker la baza de date. Docker trebuie sa fie pornit.
+Trebuie creat fisier .env in care sa avem:
+
+DATABASE_URL="postgresql://postgres:mysecretpassword@localhost:5432/catalog?schema=public"
+
+JWT_SECRET="cheie"
+
+JWT_EXPIRES_IN=1d
+
+SALT_ROUNDS=10
+
+Ne conectam, local, spre exemplu cu Docker, la baza de date: 
 $ docker run -p 5432:5432 --name local-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres
 
-Apoi aplicam migrarea.
+Pentru migrare:
 $ npx prisma migrate dev 
+
+Apoi:
 $ npx prisma generate
 
 Pentru a vizualiza datele din baza de date:
@@ -62,7 +75,8 @@ $ npx prisma studio
 
 In alt terminal rulam serverul, folosind scriptul "start" definit in package.json
 $ npm start
-Sau putem rula direct; e acelasi lucru
+
+Putem rula si folosind: 
 $ node app.js
 
 
